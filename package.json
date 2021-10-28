@@ -8,6 +8,10 @@
     "build": "tsc",
     "start": "node dist/src/server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SystemJAADE/virtual-ledger.git"
+  },
   "keywords": [],
   "author": "FlyingCat",
   "license": "ISC",
