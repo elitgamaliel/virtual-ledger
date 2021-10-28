@@ -1,5 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../config/database.config";
+import { TransactionTypeInstance } from "./transaction-type";
+import { UserInstance } from "./user";
 
 interface LedgerAttributes {
   id: Number;
