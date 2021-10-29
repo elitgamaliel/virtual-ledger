@@ -6,9 +6,9 @@ interface TransactionTypeAttributes {
   description: String;
 }
 
-export class TransactionTypeInstance extends Model<TransactionTypeAttributes> {}
+export class TransactionType extends Model<TransactionTypeAttributes> {}
 
-TransactionTypeInstance.init(
+TransactionType.init(
   {
     id: {
       type: DataTypes.INTEGER,

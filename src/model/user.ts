@@ -10,9 +10,9 @@ interface UserAttributes {
   password: String;
 }
 
-export class UserInstance extends Model<UserAttributes> {}
+export class User extends Model<UserAttributes> {}
 
-UserInstance.init(
+User.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -44,5 +44,6 @@ UserInstance.init(
     sequelize: db,
     tableName: "user",
     timestamps: false,
+    underscored: true,
   }
 );

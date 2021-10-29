@@ -1,10 +1,11 @@
 import express, { Request, Response } from "express";
-import { UserInstance } from "../model/user";
+import { Ledger } from "../model/ledger";
+import { User } from "../model/user";
 
 class UserController {
   async create(req: Request, res: Response) {
     try {
-      const record = await UserInstance.create({ ...req.body });
+      const record = await User.create({ ...req.body });
       return res.json({
         record,
         msg: "Successfully created a user",
@@ -23,8 +24,14 @@ class UserController {
     try {
       const limit = req.query?.limit as number | undefined;
       const offset = req.query?.offset as number | undefined;
-      const records = await UserInstance.findAll({
+      const records = await User.findAll({
         where: {},
+        include: [
+          {
+            model: Ledger,
+            as: "ledger",
+          },
+        ],
         limit,
         offset,
       });
@@ -42,7 +49,7 @@ class UserController {
   async readByID(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const record = await UserInstance.findOne({ where: { id } });
+      const record = await User.findOne({ where: { id } });
       return res.json(record);
     } catch (e) {
       return res.json({
@@ -57,7 +64,7 @@ class UserController {
   async update(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const record = await UserInstance.findOne({ where: { id } });
+      const record = await User.findOne({ where: { id } });
 
       if (!record) {
         return res.json({ msg: "Can't find existing record." });
@@ -78,7 +85,7 @@ class UserController {
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const record = await UserInstance.findOne({ where: { id } });
+      const record = await User.findOne({ where: { id } });
 
       if (!record) {
         return res.json({ msg: "Can't find existing record." });

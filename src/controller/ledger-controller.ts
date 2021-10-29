@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { LedgerInstance } from "../model/ledger";
-import { UserInstance } from "../model/user";
+import { Ledger } from "../model/ledger";
+import { User } from "../model/user";
 
 class LedgerController {
   async create(req: Request, res: Response) {}
@@ -8,9 +8,14 @@ class LedgerController {
     try {
       const limit = req.query?.limit as number | undefined;
       const offset = req.query?.offset as number | undefined;
-      const records = await LedgerInstance.findAll({
+      const records = await Ledger.findAll({
         where: {},
-        include: UserInstance,
+        include: [
+          {
+            model: User,
+            as: "users",
+          },
+        ],
         limit,
         offset,
       });

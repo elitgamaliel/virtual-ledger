@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
-import { TransactionTypeInstance } from "../model/transaction-type";
+import { TransactionType } from "../model/transaction-type";
 
 class TransactionTypeController {
   async create(req: Request, res: Response) {
     try {
-      const record = await TransactionTypeInstance.create({ ...req.body });
+      const record = await TransactionType.create({ ...req.body });
       return res.json({
         record,
         msg: "Successfully created a Transaction Type",
@@ -22,7 +22,7 @@ class TransactionTypeController {
     try {
       const limit = req.query?.limit as number | undefined;
       const offset = req.query?.offset as number | undefined;
-      const records = await TransactionTypeInstance.findAll({
+      const records = await TransactionType.findAll({
         where: {},
         limit,
         offset,
@@ -40,7 +40,7 @@ class TransactionTypeController {
   async readByID(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const record = await TransactionTypeInstance.findOne({ where: { id } });
+      const record = await TransactionType.findOne({ where: { id } });
       return res.json(record);
     } catch (e) {
       return res.json({
@@ -54,7 +54,7 @@ class TransactionTypeController {
   async update(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const record = await TransactionTypeInstance.findOne({ where: { id } });
+      const record = await TransactionType.findOne({ where: { id } });
 
       if (!record) {
         return res.json({ msg: "Can't find existing Transaction Type." });
@@ -74,7 +74,7 @@ class TransactionTypeController {
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const record = await TransactionTypeInstance.findOne({ where: { id } });
+      const record = await TransactionType.findOne({ where: { id } });
 
       if (!record) {
         return res.json({ msg: "Can't find existing Transaction Type." });

@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../config/database.config";
-import { TransactionTypeInstance } from "./transaction-type";
-import { UserInstance } from "./user";
+import { User } from "./user";
 
 interface LedgerAttributes {
   id: Number;
@@ -13,9 +12,9 @@ interface LedgerAttributes {
   added_on: Date;
 }
 
-export class LedgerInstance extends Model<LedgerAttributes> {}
+export class Ledger extends Model<LedgerAttributes> {}
 
-LedgerInstance.init(
+Ledger.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -51,5 +50,12 @@ LedgerInstance.init(
     sequelize: db,
     tableName: "ledger",
     timestamps: false,
+    underscored: true,
   }
 );
+
+User.hasMany(Ledger, { as: "ledger" });
+Ledger.belongsTo(User, {
+  foreignKey: "user_id",
+  as: "users",
+});
