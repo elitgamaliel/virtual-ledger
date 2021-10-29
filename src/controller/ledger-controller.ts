@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { Ledger } from "../model/ledger";
+import { TransactionType } from "../model/transaction-type";
 import { User } from "../model/user";
 
 class LedgerController {
@@ -13,7 +14,11 @@ class LedgerController {
         include: [
           {
             model: User,
-            as: "users",
+            as: "user",
+          },
+          {
+            model: TransactionType,
+            as: "transaction_type",
           },
         ],
         limit,

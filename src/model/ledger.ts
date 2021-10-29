@@ -1,11 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../config/database.config";
+import { TransactionType } from "./transaction-type";
 import { User } from "./user";
 
 interface LedgerAttributes {
   id: Number;
   user_id: Number;
-  trans_type_id: Number;
+  transaction_type_id: Number;
   amount: Number;
   description: String;
   created_on: Date;
@@ -25,7 +26,7 @@ Ledger.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    trans_type_id: {
+    transaction_type_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -57,5 +58,11 @@ Ledger.init(
 User.hasMany(Ledger, { as: "ledger" });
 Ledger.belongsTo(User, {
   foreignKey: "user_id",
-  as: "users",
+  as: "user",
+});
+
+TransactionType.hasMany(Ledger, { as: "ledger" });
+Ledger.belongsTo(TransactionType, {
+  foreignKey: "transaction_type_id",
+  as: "transaction_type",
 });
