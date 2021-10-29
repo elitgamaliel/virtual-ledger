@@ -20,23 +20,23 @@ User.init(
       autoIncrement: true,
     },
     username: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(64),
       allowNull: false,
     },
     first_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(64),
       allowNull: false,
     },
     last_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(64),
       allowNull: false,
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(64),
       allowNull: false,
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(64),
       allowNull: false,
     },
   },

@@ -31,11 +31,12 @@ Ledger.init(
       allowNull: false,
     },
     amount: {
-      type: DataTypes.DOUBLE,
+      type: DataTypes.DECIMAL(13, 2),
+      defaultValue: "0.00",
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(128),
       allowNull: true,
     },
     created_on: {
