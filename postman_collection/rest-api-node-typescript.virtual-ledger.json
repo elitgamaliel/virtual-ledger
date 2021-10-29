@@ -214,6 +214,32 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Ledger",
+			"item": [
+				{
+					"name": "Read by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/api/v1/ledger/6",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"ledger",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
